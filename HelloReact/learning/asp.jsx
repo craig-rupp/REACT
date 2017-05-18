@@ -5,10 +5,24 @@ var Greeter = React.createClass({
 			message : "Default message should the message variable be blank"
 		};
 	},
+	getInitialState : function(){
+		return {
+			name : this.props.name
+		};
+	},
 	onButtonClick : function(event){
 		event.preventDefault();
-		name = this.refs.name.value;
-		alert(name);
+		var nameRef = this.refs.name;
+		var name = nameRef.value;
+		nameRef.value = '';
+		if(typeof name === 'string' && name.length >= 1){
+			this.setState({
+				name : name
+			});			
+		// } else {
+		// 	return this.getInitialState();
+		// }
+		//alert(name);
 	},
 	render : function(){
 		// return React.createElement(
@@ -16,7 +30,7 @@ var Greeter = React.createClass({
 		// 	null,
 		// 	'Hello React.createElement'
 		// );
-		var name = this.props.name;
+		var name = this.state.name;
 		var message = this.props.message;
 		return (
 			<div>
