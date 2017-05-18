@@ -5,6 +5,11 @@ var Greeter = React.createClass({
 			message : "Default message should the message variable be blank"
 		};
 	},
+	onButtonClick : function(event){
+		event.preventDefault();
+		name = this.refs.name.value;
+		alert(name);
+	},
 	render : function(){
 		// return React.createElement(
 		// 	'h1',
@@ -18,6 +23,10 @@ var Greeter = React.createClass({
 			<h1>Hello {name}! Arsenal</h1>
 			<p>They beat <strong>United</strong> yesterday</p>
 			<p>Detailed message contains <strong>{message}</strong></p>
+			<form onSubmit={this.onButtonClick}>
+				<input type="text" ref="name"/>
+				<button>Set Name</button>
+			</form>
 			</div>
 		);
 	}
